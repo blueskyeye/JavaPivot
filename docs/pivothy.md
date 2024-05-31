@@ -101,3 +101,18 @@ protected void printFormat(List<List<Map<String,Object>>> list) {
 ```
 
 ![1717145749994](images/pivothy/1717145749994.png)
+
+outOfTable方法返回结果用下列方法输出结果：
+
+```java
+public void printTable(List<List<String>> datas) {
+		for(List<String> row:datas) {
+			for(String cell:row) {
+				System.out.format("%-10s", cell);
+			}
+			System.out.println();
+		}
+	}
+```
+
+![1717146145903](images/pivothy/1717146145903.png)
