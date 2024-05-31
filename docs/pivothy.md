@@ -38,7 +38,7 @@ List<Map<String, Object>> list = MockDataSource.getList();//获取上述源始�
 DataSourceMgr<Map<String, Object>> dataSourceMgr = new DataSourceMgr<>(list);//设置数据源
 Pivot pivot= new Pivot<Map<String, Object>>(dataSourceMgr);//构建透视对象
 privotForge.addRowField("city", "城市");//设置行区域字段(用于纵向扩展）
-privotForge.addColField("date");//设置列区域字段（用于横向扩展)
+privotForge.addColField("date","日期");//设置列区域字段（用于横向扩展)
 privotForge.addValField("num");//设置值区域字段（用于显示数值）
 privotForge.exec();//进行数据透视处理
 List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();//获取透视结果数据
@@ -55,6 +55,24 @@ List<List<String>> table = privotForge.outOfTable();//获取透视结果数据
 ```
 
 结果数据示例：
+
+前端html展示示例(仅为示例,样式或格式化问题请根据实际需求进行调整)：
+
+```javascript
+let list= table;//table为上述后端outOfTableMap方法返回结果集。
+let html='<table>';
+for(int i=0;i<list.length;i++){
+   let row  = list[i];
+   html+='<tr>';
+   for(int j=0;j<row.length;j++){
+       let dnCell= row[j];
+       const { format,posY, posX, spanrow, spancol,dataType} = dnCell;
+       html+='<td colSpan="'+spancol+'" rowSpan="'+spanrow+'">'+format+'</td>';
+   }
+   html+='</tr>';
+}
+html+='</table>';
+```
 
 outOfTableMap方法返回结果用下列输出方法：
 
@@ -93,7 +111,7 @@ protected void printFormat(List<List<Map<String,Object>>> list) {
 					format+="(1,1)";
 					System.out.print(format+" ");
 				}
-		
+
 			}
 			System.out.println();
 		}
@@ -106,13 +124,32 @@ outOfTable方法返回结果用下列方法输出结果：
 
 ```java
 public void printTable(List<List<String>> datas) {
-		for(List<String> row:datas) {
-			for(String cell:row) {
-				System.out.format("%-10s", cell);
-			}
-			System.out.println();
-		}
+	for(List<String> row:datas) {
+	    for(String cell:row) {
+		System.out.format("%-10s", cell);
+	    }
+	    System.out.println();
 	}
+}	  
 ```
 
 ![1717146145903](images/pivothy/1717146145903.png)
+
+## 2行1列1值
+
+示例代码：
+
+```java
+List<Map<String, Object>> list = MockDataSource.getList();//获取上述源始数据
+DataSourceMgr<Map<String, Object>> dataSourceMgr = new DataSourceMgr<>(list);//设置数据源
+Pivot pivot= new Pivot<Map<String, Object>>(dataSourceMgr);//构建透视对象
+privotForge.addRowField("city", "城市");//设置行区域字段(用于纵向扩展）
+privotForge.addRowField("prodtype", "商品类型");//设置行区域字段(用于纵向扩展）
+privotForge.addColField("date","日期");//设置列区域字段（用于横向扩展)
+privotForge.addValField("amount");//设置值区域字段（用于显示数值）
+privotForge.exec();//进行数据透视处理
+List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();//获取透视结果数据
+
+```
+
+## 1行1列2值

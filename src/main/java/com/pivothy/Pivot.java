@@ -540,7 +540,7 @@ public class Pivot<T> {
 	 * 列区域增加一个字段
 	 * @param fieldName 数据源字段
 	 */
-	public void addColwField(String fieldName) {
+	public void addColField(String fieldName) {
 		this.addColField(fieldName, fieldName);
 	}
 	/**
