@@ -27,7 +27,7 @@ implementation 'com.pivothy:pivothy:1.1.0'
 
 点击以下链接，下载`pivothy-X.X.X.jar`即可：
 
-* [Maven中央库]([https://](https://repo1.maven.org/maven2/com/pivothy/pivothy/1.1.0/)https://)
+* [Maven中央库](https://repo1.maven.org/maven2/com/pivothy/pivothy/1.1.0/)
 
 # 📝文档
 
