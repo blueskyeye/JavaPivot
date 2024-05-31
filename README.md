@@ -15,8 +15,8 @@ Java Data Pivot Table Component是一个轻量级、高效的Java库，用于创
 将以下依赖添加到您的`pom.xml`文件中：
 ```xml
 <dependency>
-    <groupId>com.yourcompany</groupId>
-    <artifactId>java-data-pivot</artifactId>
-    <version>1.0.0</version>
+    <groupId>com.pivothy</groupId>
+    <artifactId>pivothy</artifactId>
+    <version>1.1.0</version>
 </dependency>
 
