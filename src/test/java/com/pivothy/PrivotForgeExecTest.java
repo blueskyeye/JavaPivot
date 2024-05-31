@@ -32,7 +32,8 @@ public class PrivotForgeExecTest extends TestTool	{
     @Before
     public void setUp() {    	
     	// 创建模拟的DataSourceMgr
-        dataSourceMgr = new DataSourceMgr<>(MockDataSource.getList());
+        List<Map<String, Object>> list = MockDataSource.getList();
+		dataSourceMgr = new DataSourceMgr<>(list);
         // 初始化PrivotForge
         privotForge = new Pivot<Map<String, Object>>(dataSourceMgr);
     }
@@ -46,7 +47,7 @@ public class PrivotForgeExecTest extends TestTool	{
         Layout layout = Layout.TABLE;
         privotForge.addRowField("city", "城市", layout);
         privotForge.addColField("date", "日期");
-        privotForge.addValField("num");
+        privotForge.addValField("amount");
         privotForge.exec();
         List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();
         printFormat(tableMap);

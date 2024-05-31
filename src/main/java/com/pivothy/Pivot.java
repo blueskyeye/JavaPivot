@@ -73,9 +73,19 @@ public class Pivot<T> {
 	
 	private boolean isExec=false;//是否执行
 
+	public Pivot(List<Map<String,Object>> dataSource) {
+		this.dataSourceMgr = new DataSourceMgr(dataSource);
+		init();
+	}
+	
 	
 	public Pivot(DataSourceMgr<T> dataSource) {
 		this.dataSourceMgr = dataSource;
+		init();
+	}
+
+
+	private void init() {
 		rowPanel = new RowPanelHandle(this);
         colPanel = new ColPanelHandle(this);
         valPanel = new ValPanelHandle(this);
