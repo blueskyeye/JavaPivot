@@ -1,0 +1,452 @@
+[
+    {
+        "date": "2020/1",
+        "amount": 6,
+        "city": "北京",
+        "num": 6,
+        "saler": "朋友",
+        "price": 1,
+        "prodtype": "防护服"
+    },
+    {
+        "date": "2020/1",
+        "amount": 6,
+        "city": "深圳",
+        "num": 6,
+        "saler": "表姐",
+        "price": 1,
+        "prodtype": "消毒液"
+    },
+    {
+        "date": "2020/1",
+        "amount": 6,
+        "city": "成都",
+        "num": 6,
+        "saler": "表哥",
+        "price": 1,
+        "prodtype": "纯棉口罩"
+    },
+    {
+        "date": "2020/1",
+        "amount": 6,
+        "city": "广州",
+        "num": 6,
+        "saler": "堂姐",
+        "price": 1,
+        "prodtype": "医用口罩"
+    },
+    {
+        "date": "2020/1",
+        "amount": 6,
+        "city": "上海",
+        "num": 6,
+        "saler": "堂兄",
+        "price": 1,
+        "prodtype": "N95口罩"
+    },
+    {
+        "date": "2020/1",
+        "amount": 6,
+        "city": "北京",
+        "num": 6,
+        "saler": "朋友",
+        "price": 1,
+        "prodtype": "防护服"
+    },
+    {
+        "date": "2020/1",
+        "amount": 6,
+        "city": "深圳",
+        "num": 6,
+        "saler": "表姐",
+        "price": 1,
+        "prodtype": "消毒液"
+    },
+    {
+        "date": "2020/1",
+        "amount": 6,
+        "city": "成都",
+        "num": 6,
+        "saler": "表哥",
+        "price": 1,
+        "prodtype": "纯棉口罩"
+    },
+    {
+        "date": "2020/1",
+        "amount": 6,
+        "city": "广州",
+        "num": 6,
+        "saler": "堂姐",
+        "price": 1,
+        "prodtype": "医用口罩"
+    },
+    {
+        "date": "2020/1",
+        "amount": 6,
+        "city": "上海",
+        "num": 6,
+        "saler": "堂兄",
+        "price": 1,
+        "prodtype": "N95口罩"
+    },
+    {
+        "date": "2020/2",
+        "amount": 6,
+        "city": "深圳",
+        "num": 6,
+        "saler": "表姐",
+        "price": 1,
+        "prodtype": "消毒液"
+    },
+    {
+        "date": "2020/2",
+        "amount": 6,
+        "city": "成都",
+        "num": 6,
+        "saler": "表哥",
+        "price": 1,
+        "prodtype": "纯棉口罩"
+    },
+    {
+        "date": "2020/2",
+        "amount": 6,
+        "city": "广州",
+        "num": 6,
+        "saler": "堂姐",
+        "price": 1,
+        "prodtype": "医用口罩"
+    },
+    {
+        "date": "2020/2",
+        "amount": 6,
+        "city": "上海",
+        "num": 6,
+        "saler": "堂兄",
+        "price": 1,
+        "prodtype": "N95口罩"
+    },
+    {
+        "date": "2020/2",
+        "amount": 6,
+        "city": "北京",
+        "num": 6,
+        "saler": "朋友",
+        "price": 1,
+        "prodtype": "防护服"
+    },
+    {
+        "date": "2020/2",
+        "amount": 6,
+        "city": "深圳",
+        "num": 6,
+        "saler": "表姐",
+        "price": 1,
+        "prodtype": "消毒液"
+    },
+    {
+        "date": "2020/2",
+        "amount": 6,
+        "city": "成都",
+        "num": 6,
+        "saler": "表哥",
+        "price": 1,
+        "prodtype": "纯棉口罩"
+    },
+    {
+        "date": "2020/2",
+        "amount": 6,
+        "city": "广州",
+        "num": 6,
+        "saler": "堂姐",
+        "price": 1,
+        "prodtype": "医用口罩"
+    },
+    {
+        "date": "2020/2",
+        "amount": 6,
+        "city": "上海",
+        "num": 6,
+        "saler": "堂兄",
+        "price": 1,
+        "prodtype": "N95口罩"
+    },
+    {
+        "date": "2020/2",
+        "amount": 6,
+        "city": "北京",
+        "num": 6,
+        "saler": "朋友",
+        "price": 1,
+        "prodtype": "防护服"
+    },
+    {
+        "date": "2020/3",
+        "amount": 6,
+        "city": "成都",
+        "num": 6,
+        "saler": "表哥",
+        "price": 1,
+        "prodtype": "纯棉口罩"
+    },
+    {
+        "date": "2020/3",
+        "amount": 6,
+        "city": "广州",
+        "num": 6,
+        "saler": "堂姐",
+        "price": 1,
+        "prodtype": "医用口罩"
+    },
+    {
+        "date": "2020/3",
+        "amount": 6,
+        "city": "上海",
+        "num": 6,
+        "saler": "堂兄",
+        "price": 1,
+        "prodtype": "N95口罩"
+    },
+    {
+        "date": "2020/3",
+        "amount": 6,
+        "city": "北京",
+        "num": 6,
+        "saler": "朋友",
+        "price": 1,
+        "prodtype": "防护服"
+    },
+    {
+        "date": "2020/3",
+        "amount": 6,
+        "city": "深圳",
+        "num": 6,
+        "saler": "表姐",
+        "price": 1,
+        "prodtype": "消毒液"
+    },
+    {
+        "date": "2020/3",
+        "amount": 6,
+        "city": "成都",
+        "num": 6,
+        "saler": "表哥",
+        "price": 1,
+        "prodtype": "纯棉口罩"
+    },
+    {
+        "date": "2020/3",
+        "amount": 6,
+        "city": "广州",
+        "num": 6,
+        "saler": "堂姐",
+        "price": 1,
+        "prodtype": "医用口罩"
+    },
+    {
+        "date": "2020/3",
+        "amount": 6,
+        "city": "上海",
+        "num": 6,
+        "saler": "堂兄",
+        "price": 1,
+        "prodtype": "N95口罩"
+    },
+    {
+        "date": "2020/3",
+        "amount": 6,
+        "city": "北京",
+        "num": 6,
+        "saler": "朋友",
+        "price": 1,
+        "prodtype": "防护服"
+    },
+    {
+        "date": "2020/3",
+        "amount": 6,
+        "city": "深圳",
+        "num": 6,
+        "saler": "表姐",
+        "price": 1,
+        "prodtype": "消毒液"
+    },
+    {
+        "date": "2020/4",
+        "amount": 6,
+        "city": "广州",
+        "num": 6,
+        "saler": "堂姐",
+        "price": 1,
+        "prodtype": "医用口罩"
+    },
+    {
+        "date": "2020/4",
+        "amount": 6,
+        "city": "上海",
+        "num": 6,
+        "saler": "堂兄",
+        "price": 1,
+        "prodtype": "N95口罩"
+    },
+    {
+        "date": "2020/4",
+        "amount": 6,
+        "city": "北京",
+        "num": 6,
+        "saler": "朋友",
+        "price": 1,
+        "prodtype": "防护服"
+    },
+    {
+        "date": "2020/4",
+        "amount": 6,
+        "city": "深圳",
+        "num": 6,
+        "saler": "表姐",
+        "price": 1,
+        "prodtype": "消毒液"
+    },
+    {
+        "date": "2020/4",
+        "amount": 6,
+        "city": "成都",
+        "num": 6,
+        "saler": "表哥",
+        "price": 1,
+        "prodtype": "纯棉口罩"
+    },
+    {
+        "date": "2020/4",
+        "amount": 6,
+        "city": "广州",
+        "num": 6,
+        "saler": "堂姐",
+        "price": 1,
+        "prodtype": "医用口罩"
+    },
+    {
+        "date": "2020/4",
+        "amount": 6,
+        "city": "上海",
+        "num": 6,
+        "saler": "堂兄",
+        "price": 1,
+        "prodtype": "N95口罩"
+    },
+    {
+        "date": "2020/4",
+        "amount": 6,
+        "city": "北京",
+        "num": 6,
+        "saler": "朋友",
+        "price": 1,
+        "prodtype": "防护服"
+    },
+    {
+        "date": "2020/4",
+        "amount": 6,
+        "city": "深圳",
+        "num": 6,
+        "saler": "表姐",
+        "price": 1,
+        "prodtype": "消毒液"
+    },
+    {
+        "date": "2020/4",
+        "amount": 6,
+        "city": "成都",
+        "num": 6,
+        "saler": "表哥",
+        "price": 1,
+        "prodtype": "纯棉口罩"
+    },
+    {
+        "date": "2020/5",
+        "amount": 6,
+        "city": "上海",
+        "num": 6,
+        "saler": "堂兄",
+        "price": 1,
+        "prodtype": "N95口罩"
+    },
+    {
+        "date": "2020/5",
+        "amount": 6,
+        "city": "北京",
+        "num": 6,
+        "saler": "朋友",
+        "price": 1,
+        "prodtype": "防护服"
+    },
+    {
+        "date": "2020/5",
+        "amount": 6,
+        "city": "深圳",
+        "num": 6,
+        "saler": "表姐",
+        "price": 1,
+        "prodtype": "消毒液"
+    },
+    {
+        "date": "2020/5",
+        "amount": 6,
+        "city": "成都",
+        "num": 6,
+        "saler": "表哥",
+        "price": 1,
+        "prodtype": "纯棉口罩"
+    },
+    {
+        "date": "2020/5",
+        "amount": 6,
+        "city": "广州",
+        "num": 6,
+        "saler": "堂姐",
+        "price": 1,
+        "prodtype": "医用口罩"
+    },
+    {
+        "date": "2020/5",
+        "amount": 6,
+        "city": "上海",
+        "num": 6,
+        "saler": "堂兄",
+        "price": 1,
+        "prodtype": "N95口罩"
+    },
+    {
+        "date": "2020/5",
+        "amount": 6,
+        "city": "北京",
+        "num": 6,
+        "saler": "朋友",
+        "price": 1,
+        "prodtype": "防护服"
+    },
+    {
+        "date": "2020/5",
+        "amount": 6,
+        "city": "深圳",
+        "num": 6,
+        "saler": "表姐",
+        "price": 1,
+        "prodtype": "消毒液"
+    },
+    {
+        "date": "2020/5",
+        "amount": 6,
+        "city": "成都",
+        "num": 6,
+        "saler": "表哥",
+        "price": 1,
+        "prodtype": "纯棉口罩"
+    },
+    {
+        "date": "2020/5",
+        "amount": 6,
+        "city": "广州",
+        "num": 6,
+        "saler": "堂姐",
+        "price": 1,
+        "prodtype": "医用口罩"
+    }
+]
