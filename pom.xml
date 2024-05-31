@@ -8,7 +8,7 @@
 
   <name>pivothy</name>
   <description>数据透视工具</description>
-  <url>https://github.com/shihy/pivothy</url>
+  <url>https://github.com/blueskyeye/JavaPivot</url>
   
 	<licenses>
 		<license>
@@ -27,9 +27,9 @@
     </developer>
   </developers>
   	<scm>
-	  <connection>scm:git:git://github.com/shihy/pivothy.git</connection>
-	  <developerConnection>scm:git:ssh://github.com:shihy/pivothy.git</developerConnection>
-	  <url>http://github.com/shihy/pivothy/tree/master</url>
+	  <connection>scm:git:git://github.com/blueskyeye/JavaPivot.git</connection>
+	  <developerConnection>scm:git:ssh://github.com:blueskyeye/JavaPivot.git</developerConnection>
+	  <url>https://github.com/blueskyeye/JavaPivot/tree/main</url>
 	</scm>
   
   	<distributionManagement>
@@ -44,7 +44,7 @@
  	</distributionManagement>
   
   <properties>
-    <revision>1.0.0</revision>
+    <revision>1.1.1</revision>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>

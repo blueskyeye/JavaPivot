@@ -1,18 +1,13 @@
-# Java Data Pivot Table Component
+# 📚简介
 
-Java Data Pivot Table Component是一个轻量级、高效的Java库，用于创建和操作数据透视表。它提供了丰富的功能，允许用户从原始数据集中提取、分析和呈现数据，而无需依赖其他组件。
+Java Pivot 是一个轻量级、高效的类似数据透视表的Java工具库，用于类似数据透视表的数据加工，无需依赖其他组件。
 
-## 特性
+# 📦安装
 
-- **独立性**：不依赖任何第三方库，完全基于Java。
-- **灵活性**：支持自定义汇总函数和数据格式化。
-- **易用性**：提供简洁直观的API和详细的使用文档。
-- **性能优化**：优化处理大数据集的能力和内存使用。
+## 🍊Maven
 
-## 安装
+在项目的pom.xml的dependencies中加入以下内容:
 
-### Maven
-将以下依赖添加到您的`pom.xml`文件中：
 ```xml
 <dependency>
     <groupId>com.pivothy</groupId>
@@ -20,3 +15,20 @@ Java Data Pivot Table Component是一个轻量级、高效的Java库，用于创
     <version>1.1.0</version>
 </dependency>
 
+```
+
+## 🍐Gradle
+
+```
+implementation 'com.pivothy:pivothy:1.1.0'
+```
+
+## 📥下载jar
+
+点击以下链接，下载`pivothy-X.X.X.jar`即可：
+
+* [Maven中央库]([https://](https://repo1.maven.org/maven2/com/pivothy/pivothy/1.1.0/)https://)
+
+# 📝文档
+
+🔥[使用指南](docs/pivothy.md)
