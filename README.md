@@ -33,7 +33,7 @@ implementation 'com.pivothy:pivothy:1.1.0'
 
 🔥[使用指南](docs/pivothy.md)
 
-# 支持
+# 💳支持
 
 如果你觉得不错，可以捐赠请维护者吃包辣条\~，在此表示感谢^\_^
 
