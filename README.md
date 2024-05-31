@@ -37,4 +37,4 @@ implementation 'com.pivothy:pivothy:1.1.0'
 
 如果你觉得不错，可以捐赠请维护者吃包辣条\~，在此表示感谢^\_^
 
-![1717147087244](images/README/1717147087244.png)
+![1717147087244](docs/images/pivothy/1717147087244.png)
