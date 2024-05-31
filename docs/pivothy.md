@@ -2,7 +2,7 @@
 
 ## 快速入门
 
-[源始数据](docs/docs.json)
+[源始数据](docs.json)
 
 示例表格（只展示部分数据）
 
@@ -93,7 +93,7 @@ protected void printFormat(List<List<Map<String,Object>>> list) {
 					format+="(1,1)";
 					System.out.print(format+" ");
 				}
-			
+		
 			}
 			System.out.println();
 		}
