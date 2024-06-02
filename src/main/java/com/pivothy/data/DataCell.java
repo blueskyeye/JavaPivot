@@ -201,6 +201,10 @@ public class DataCell implements Serializable{
 				.collect(Collectors.toList()));
 		cell.setFormat(this.format);
 		cell.setDataType(this.dataType);
+		cell.setSpancol(this.spancol);
+		cell.setSpanrow(this.spanrow);
+		cell.setPrefix(this.prefix);
+		cell.setCalc(this.calc);
 		return cell;
 	}
 	

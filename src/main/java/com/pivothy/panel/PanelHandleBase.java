@@ -6,6 +6,8 @@ import java.util.List;
 import com.pivothy.Pivot;
 import com.pivothy.data.DataCell;
 import com.pivothy.field.PanelField;
+import com.pivothy.field.TotalField;
+import com.pivothy.field.ValueField;
 
 /**
  * 
@@ -66,7 +68,13 @@ public abstract class PanelHandleBase {
 	 */
 	public int getIndexOfField(PanelField panelField) {
 		int index=0;
-		for(PanelField field:this.panelFields) {			
+		for(PanelField field:this.panelFields) {
+			if(panelField instanceof ValueField) {
+				//当前字段为值字段时
+				if(TotalField.isTotalField(field)) {
+					break;
+				}
+			}
 			if (panelField.getFieldAlias().equals(field.getFieldAlias())) {
 	            break;
 	        }
@@ -97,6 +105,24 @@ public abstract class PanelHandleBase {
 			}
 		}
 		return field;
+	}
+	
+	/**
+	 * 
+	 * @param panelField 区域字段
+	 * @return 是否值区域字段
+	 */
+	protected boolean isValueField(PanelField panelField) {
+		return TotalField.isTotalField(panelField) || panelField instanceof ValueField;
+	}
+	
+	/**
+	 * 
+	 * @param panelField 区域字段
+	 * @return 是否非值区域字段
+	 */
+	protected boolean isAxisField(PanelField panelField) {
+		 return !this.isValueField(panelField);
 	}
 	
 	/**

@@ -91,6 +91,14 @@ public abstract class  AxisPanelHandle extends PanelHandleBase {
 	}
 	
 	/**
+	 * 
+	 * @return 获取当前区域的最新行数
+	 */
+	public int getRowNumOfCells() {
+		return this.panelCells.size();
+	}
+	
+	/**
 	 * 获取当前行高
 	 * @return 获取当前行高
 	 */

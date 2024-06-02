@@ -73,19 +73,9 @@ public class Pivot<T> {
 	
 	private boolean isExec=false;//是否执行
 
-	public Pivot(List<Map<String,Object>> dataSource) {
-		this.dataSourceMgr = new DataSourceMgr(dataSource);
-		init();
-	}
-	
 	
 	public Pivot(DataSourceMgr<T> dataSource) {
 		this.dataSourceMgr = dataSource;
-		init();
-	}
-
-
-	private void init() {
 		rowPanel = new RowPanelHandle(this);
         colPanel = new ColPanelHandle(this);
         valPanel = new ValPanelHandle(this);
@@ -183,8 +173,7 @@ public class Pivot<T> {
 		int yOffset = rowStart>1?(rowStart-1):0;
 		//计算最大行
 		//int maxRows = this.getMaxRows();
-		if(rowCells.size()>0) {
-			int rowIndex=0;//行数：rowCells的行数			
+		if(rowCells.size()>0) {		
 			for(List<DataCell> row:rowCells) {				
 				List<DataCell> dataRow = new ArrayList<>();
 				for(DataCell cell:row) {
@@ -205,14 +194,13 @@ public class Pivot<T> {
 						//处理上一行结点存在跨行的情况
 						//只需要处理每行第一个单元，后续节点存在跨行的不影响
 						//相当于Y值>当前行时需要将空行补上。
-						for(int i=0;i<posY-rowIndex;i++) {//增加空行。上面行存在跨行的情况
+						for(;this.retCells.size()<posY;) {//增加空行。上面行存在跨行的情况
 							this.retCells.add(new ArrayList<DataCell>());
 						}
 					}
 					dataRow.add(cCell);
 				}				
 				this.retCells.add(dataRow);
-				rowIndex++;
 			}
 		}
 		int colStart = offsetOfCol();//获取列区域单元的起始X位置
@@ -350,16 +338,18 @@ public class Pivot<T> {
 	 * 行区域增加一个字段
 	 * @param fieldName 数据源字段名称
 	 */
-	public void addRowField(String fieldName) {
+	public Pivot<T> addRowField(String fieldName) {
 		this.addRowField(fieldName, fieldName,Layout.TABLE);
+		return this;
 	}
 	/**
 	 * 行区域增加一个字段
 	 * @param fieldName 数据源字段名称
 	 * @param fieldAlias 字段别名
 	 */
-	public void addRowField(String fieldName,String fieldAlias) {
+	public Pivot<T> addRowField(String fieldName,String fieldAlias) {
 		this.addRowField(fieldName, fieldAlias,Layout.TABLE);
+		return this;
 	}
 	/**
 	 * 行区域增加一个字段
@@ -367,7 +357,7 @@ public class Pivot<T> {
 	 * @param fieldAlias 字段别名
 	 * @param layout 字段布局：Layout.TABLE(表格形式-默认),Layout.TREE(大纲形式-树型)
 	 */
-	public void addRowField(String fieldName,String fieldAlias,Layout layout) {
+	public Pivot<T> addRowField(String fieldName,String fieldAlias,Layout layout) {
 		DataField dataField = dataSourceMgr.getDataField(fieldName);
 		if(!rowPanel.isExist(fieldName)) {
 			RowAxisField field = new RowAxisField(dataField);
@@ -377,15 +367,17 @@ public class Pivot<T> {
 			this.axisPanelFields.put(fieldName, field);
 			this.calcRowPanelCols();
 		}
+		return this;
 	}
 	/**
 	 * 设置行(列)区域字段的分类汇总属性
 	 * @param fieldName 数据源字段名称
 	 * @param subtotal  设置小计汇总类型，Subtotal.DEFAULT(求和-默认),Subtotal.NOTHING(无汇总)
 	 */
-	public void setFieldSubtotal(String fieldName,Subtotal subtotal) {
+	public Pivot<T> setFieldSubtotal(String fieldName,Subtotal subtotal) {
 		AxisField field = getAxisField(fieldName);
 		field.setSubtotal(subtotal);
+		return this;
 	}
 	
 	/**
@@ -393,10 +385,11 @@ public class Pivot<T> {
 	 * @param fieldName 数据源字段名称
 	 * @param funs 汇总函数列表(可以一个或多个汇总)
 	 */
-	public void setDefineSubtotal(String fieldName,List<Calculation> funs) {
+	public Pivot<T> setDefineSubtotal(String fieldName,List<Calculation> funs) {
 		AxisField field = getAxisField(fieldName);
 		field.setSubtotal(Subtotal.DEFINDE);
 		field.setDefFuns(funs);
+		return this;
 	}
 	
 	/**
@@ -416,31 +409,34 @@ public class Pivot<T> {
 	 * @param fieldName 数据源字段名称
 	 * @param layout 字段布局：Layout.TABLE(表格形式-默认),Layout.TREE(大纲形式-树型)
 	 */
-	public void setRowFieldLayout(String fieldName,Layout layout) {
+	public Pivot<T> setRowFieldLayout(String fieldName,Layout layout) {
 		AxisField field = getAxisField(fieldName);
 		field.setLayout(layout);
 		setRowPanelCols(field);
+		return this;
 	}
 	/**
 	 * 设置大纲形式下在同一列中显示下一字段的标签
 	 * @param fieldName 数据源字段名称 
 	 * @param isSingleColoumn 是否在同一列中显示下一个字段的标签。true:同列显示,false:不同列显示
 	 */
-	public void setLayoutOfSameCol(String fieldName,boolean isSingleColoumn) {
+	public Pivot<T> setLayoutOfSameCol(String fieldName,boolean isSingleColoumn) {
 		AxisField field = getAxisField(fieldName);
 		field.setLayout(Layout.TREE);
 		field.setSingleColoumn(isSingleColoumn);
 		setRowPanelCols(field);//布局影响行区域的列数
+		return this;
 	}
 	/**
 	 * 设置大纲形式下在每个组顶端显示分类汇总
 	 * @param fieldName 数据源字段名称 
 	 * @param isTopSubtotal 是否在每个组顶端显示分类汇总，true:顶端显示,false:底部显示
 	 */
-	public void setLayoutOfToptotal(String fieldName,boolean isTopSubtotal) {
+	public Pivot<T> setLayoutOfToptotal(String fieldName,boolean isTopSubtotal) {
 		AxisField field = getAxisField(fieldName);
 		field.setLayout(Layout.TREE);
 		field.setTopSubtotal(isTopSubtotal);
+		return this;
 	}
 	
 	/**
@@ -448,21 +444,23 @@ public class Pivot<T> {
 	 * @param fieldName 数据源字段名称 
 	 * @param isRepeatShow 是否重复显示项目标签 true:重复显示,false:不重复显示
 	 */
-	public void setRepeatShow(String fieldName,boolean isRepeatShow) {
+	public Pivot<T> setRepeatShow(String fieldName,boolean isRepeatShow) {
 		AxisField field = getAxisField(fieldName);			
 		field.setRepeatShow(isRepeatShow);
+		return this;
 	}
 	/**
 	 * 设置字段字典，用于编码转换并按字典内容展示。
 	 * @param fieldName 数据源字段名称 
 	 * @param arrays 当前key与value一致时
 	 */
-	public void setDict(String fieldName,String[] arrays) {		
+	public Pivot<T> setDict(String fieldName,String[] arrays) {		
 		LinkedHashMap<String, Object> dictMap = new LinkedHashMap<>();
         for (String str : arrays) {
             dictMap.put(str, str);
         }
         this.setDict(fieldName, dictMap, true);
+        return this;
 	}
 	
 	/**
@@ -470,25 +468,28 @@ public class Pivot<T> {
 	 * @param fieldName 数据源字段名称
 	 * @param list  字典列表
 	 */
-	public void setDict(String fieldName,List<String> list) {
+	public Pivot<T> setDict(String fieldName,List<String> list) {
 		this.setListDict(fieldName, list,true);
+		return this;
 	}
 	
 	// 使用泛型来创建一个通用的方法
-    public <T extends Collection<String>> void setListDict(String fieldName, T collection,boolean isShowAll) {
+    public <T extends Collection<String>> Pivot<T> setListDict(String fieldName, T collection,boolean isShowAll) {
         LinkedHashMap<String, Object> dictMap = new LinkedHashMap<>();
         for (String str : collection) {
             dictMap.put(str, str);
         }
         this.setDict(fieldName, dictMap, isShowAll);
+        return (Pivot<T>) this;
     } 
 	/**
 	 * 设置字段字典，用于编码转换
 	 * @param fieldName 数据源字段名称 
 	 * @param dictMap 有序字典列表
 	 */
-	public void setDict(String fieldName,LinkedHashMap<String,Object> dictMap) {
+	public Pivot<T> setDict(String fieldName,LinkedHashMap<String,Object> dictMap) {
 		this.setDict(fieldName, dictMap,true);
+		return this;
 	}
 	
 	/**
@@ -497,10 +498,11 @@ public class Pivot<T> {
 	 * @param dictMap 有序 字典列表
 	 * @param isShowAll 展示全部字典内容，而不是以数据源为准。
 	 */
-	public void setDict(String fieldName,LinkedHashMap<String,Object> dictMap,boolean isShowAll) {
+	public Pivot<T> setDict(String fieldName,LinkedHashMap<String,Object> dictMap,boolean isShowAll) {
 		AxisField field = getAxisField(fieldName);			
 		field.setDictMap(dictMap);
 		field.setShowDictData(isShowAll);
+		return this;
 	}
 	
 	
@@ -515,16 +517,18 @@ public class Pivot<T> {
 	 * 设置行区域的树结构字段。树节点从第一个字段，根据树层次依次往后映射字段
 	 * @param tree 树型字典
 	 */
-	public void setTreeDictOfRowPanel(List<TreeDict> tree) {
+	public Pivot<T> setTreeDictOfRowPanel(List<TreeDict> tree) {
 		this.rowPanel.setTreeDicts(tree);
+		return this;
 	}
 	
 	/**
 	 * 设置列区域的树结构字段。树节点从第一个字段，根据树层次依次往后映射字段
 	 * @param tree 树型字典
 	 */
-	public void setTreeDictOfColPanel(List<TreeDict> tree) {
+	public Pivot<T> setTreeDictOfColPanel(List<TreeDict> tree) {
 		this.colPanel.setTreeDicts(tree);
+		return this;
 	}
 	
 	
@@ -540,15 +544,16 @@ public class Pivot<T> {
 	 * 列区域增加一个字段
 	 * @param fieldName 数据源字段
 	 */
-	public void addColField(String fieldName) {
+	public Pivot<T> addColField(String fieldName) {
 		this.addColField(fieldName, fieldName);
+		return this;
 	}
 	/**
 	 * 列区域增加一个字段
 	 * @param fieldName  数据源字段名称 
 	 * @param fieldAlias 字段别名
 	 */
-	public void addColField(String fieldName,String fieldAlias) {
+	public Pivot<T> addColField(String fieldName,String fieldAlias) {
 		DataField dataField = dataSourceMgr.getDataField(fieldName);
 		if(!colPanel.isExist(fieldName)) {
 			ColAxisField field = new ColAxisField(dataField);
@@ -556,22 +561,25 @@ public class Pivot<T> {
 			this.colPanel.addPanelField(field);
 			this.axisPanelFields.put(fieldName, field);
 		}
+		return this;
 	}
 	/**
 	 * 值区域增加一个字段
 	 * @param fieldName 数据源字段名称 
 	 */
-	public void addValField(String fieldName) {
+	public Pivot<T> addValField(String fieldName) {
 		String fieldAlias = this.valPanel.getFieldAlias(fieldName, Calculation.SUM);
 		this.addValField(fieldName,fieldAlias,Calculation.SUM);
+		return this;
 	}
 	/**
 	 * 值区域增加一个字段，并设置字段别名
 	 * @param fieldName 数据源字段名称
 	 * @param fieldAlias 字段别名
 	 */
-    public void addValField(String fieldName,String fieldAlias) {
+    public Pivot<T> addValField(String fieldName,String fieldAlias) {
     	this.addValField(fieldName,fieldAlias,Calculation.SUM);
+    	return this;
 	}
 	/**
 	 * 值区域增加一个字段,并设置字段汇总类型
@@ -584,9 +592,10 @@ public class Pivot<T> {
 	 *  MIN("最小值"),
 	 *  STR("字符串");
 	 */
-    public void addValField(String fieldName,Calculation calc) {
+    public Pivot<T> addValField(String fieldName,Calculation calc) {
     	String fieldAlias = this.valPanel.getFieldAlias(fieldName, calc);
 		this.addValField(fieldName,fieldAlias,calc);
+		return this;
 	}
     /**
      * 值区域增加一个字段，设置字段别名,并设置字段汇总类型
@@ -594,7 +603,7 @@ public class Pivot<T> {
      * @param fieldAlias 数据源字段别名
      * @param calc  计算规则
      */
-	public void addValField(String fieldName,String fieldAlias,Calculation calc) {
+	public Pivot<T> addValField(String fieldName,String fieldAlias,Calculation calc) {
 		DataField dataField = dataSourceMgr.getDataField(fieldName);
 		ValueField valField = new ValueField(dataField);
 		valField.setFieldAlias(fieldAlias);//TODO 关于名称重复的问题，因是后端设置先不考虑。
@@ -604,6 +613,7 @@ public class Pivot<T> {
 		if(this.valPanel.isMutilField() && StrUtil.isBlank(this.panelOfTotalField)) {
 			setTotalFieldOfColPanel(true);//默认设置
 		}
+		return this;
 	}
 	
 	/**
@@ -612,7 +622,7 @@ public class Pivot<T> {
 	 * @param fieldAlias 数据源字段别名
 	 * @param calc 分类汇总
 	 */
-	public void addValFieldOfFormula(String formula,String fieldAlias,Calculation calc) {
+	public Pivot<T> addValFieldOfFormula(String formula,String fieldAlias,Calculation calc) {
 		ValueField valField = new ValueField(null,fieldAlias);
 		valField.setFormula(true);
 		valField.setFormula(formula);
@@ -622,13 +632,14 @@ public class Pivot<T> {
 		if(this.valPanel.isMutilField() && StrUtil.isBlank(this.panelOfTotalField)) {
 			setTotalFieldOfColPanel(true);//默认设置
 		}
+		return this;
 	}
 	
 	/**
 	 * 设置多值字段展示所在区域
 	 * @param isColPanel true:列区域,false:行区域
 	 */
-	public void setTotalFieldOfColPanel(boolean isColPanel) {
+	public Pivot<T> setTotalFieldOfColPanel(boolean isColPanel) {
 		if(this.valPanel.isMutilField()) {//存在多值区域设置才有效
 			List<PanelField> valFields = this.valPanel.getPanelFields();
 			if(isColPanel) {//存在列区域
@@ -644,6 +655,7 @@ public class Pivot<T> {
 		}else {
 			this.panelOfTotalField =null;
 		}
+		return this;
 	}
 	
 	
@@ -652,8 +664,9 @@ public class Pivot<T> {
 	 * 设置行区域是否显示总计
 	 * @param isShowRowTotal 是否显示行总计
 	 */
-	public void setShowRowTotal(boolean isShowRowTotal) {
+	public Pivot<T> setShowRowTotal(boolean isShowRowTotal) {
 		this.rowPanel.setShowTotal(isShowRowTotal);
+		return this;
 	}
 
 
@@ -661,8 +674,9 @@ public class Pivot<T> {
 	 * 设置列区域是否显示总计
 	 * @param isShowColTotal 是否显示列总计
 	 */
-	public void setShowColTotal(boolean isShowColTotal) {
+	public Pivot<T> setShowColTotal(boolean isShowColTotal) {
 		this.colPanel.setShowTotal(isShowColTotal);
+		return this;
 	}
 	
 	/**

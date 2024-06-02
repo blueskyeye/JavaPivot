@@ -1,4 +1,4 @@
-package com.pivothy.Panel;
+package com.pivothy.panel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

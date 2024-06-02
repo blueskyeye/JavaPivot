@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.pivothy</groupId>
-  <artifactId>pivothy</artifactId>
-  <version>${revision}</version>
-  <packaging>jar</packaging>
+	<groupId>com.pivothy</groupId>
+	<artifactId>pivothy</artifactId>
+	<version>${revision}</version>
+	<packaging>jar</packaging>
 
-  <name>pivothy</name>
-  <description>数据透视工具</description>
-  <url>https://github.com/blueskyeye/JavaPivot</url>
+	<name>pivothy</name>
+	<description>一款java版本的数据透视工具，专为交叉统计报表而生的数据处理工具。</description>
+	<url>https://github.com/blueskyeye/JavaPivot</url>
   
 	<licenses>
 		<license>
@@ -18,14 +18,14 @@
 		</license>
 	</licenses>
 
-  <developers>
-    <developer>
-      <name>shihy</name>
-      <email>haoyan665@163.com</email>
-      <organization>Sonatype</organization>
-      <organizationUrl>http://www.pivothy.com</organizationUrl>
-    </developer>
-  </developers>
+	<developers>
+	  <developer>
+	    <name>shihy</name>
+	    <email>haoyan665@163.com</email>
+	    <organization>bendan</organization>
+	    <organizationUrl>http://www.pivothy.com</organizationUrl>
+	  </developer>
+	</developers>
   	<scm>
 	  <connection>scm:git:git://github.com/blueskyeye/JavaPivot.git</connection>
 	  <developerConnection>scm:git:ssh://github.com:blueskyeye/JavaPivot.git</developerConnection>
@@ -44,7 +44,7 @@
  	</distributionManagement>
   
   <properties>
-    <revision>1.1.1</revision>
+    <revision>1.2.0</revision>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -56,18 +56,8 @@
       <artifactId>junit</artifactId>
       <version>4.13.2</version> <!-- 检查是否有更新的版本 -->
       <scope>test</scope>
-    </dependency>
-    <dependency>
-	    <groupId>org.sonatype.central</groupId>
-	    <artifactId>central-publishing-maven-plugin</artifactId>
-	    <version>0.4.0</version>
-	</dependency>    
+    </dependency>  
   </dependencies>
-	
-	
-	
-	
-	
   <build>
     <plugins>
     	<plugin>

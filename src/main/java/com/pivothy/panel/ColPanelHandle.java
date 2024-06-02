@@ -14,6 +14,7 @@ import com.pivothy.field.Calculation;
 import com.pivothy.field.PanelField;
 import com.pivothy.field.Subtotal;
 import com.pivothy.field.TotalField;
+import com.pivothy.field.ValueField;
 
 /**
  * 
@@ -142,6 +143,12 @@ public class ColPanelHandle extends AxisPanelHandle {
 		curCell.setPosY(curPosY);
 		curCell.setPosX(curPosX);
 		curCell.setDataType(DataType.TITLE);
+		if(pCell!=null) {			
+			//如果存在父对象，添加父对象到当前对象列表
+			List<DataCell> pCells = pCell.getColCells().stream()
+					.collect(Collectors.toList());
+			curCell.setColCells(pCells);
+		}
 		curCell.addColCell(curCell);		
 		//增加当前节点
 		curRow.add(curCell);
@@ -268,7 +275,7 @@ public class ColPanelHandle extends AxisPanelHandle {
 	}
 	
 	public boolean isShowSubtotal(PanelField panelField) {
-		if(TotalField.isTotalField(panelField)) {
+		if(TotalField.isTotalField(panelField)||isValueField(panelField)) {
 			//1.多值字段没有分类汇总
 			return false;
 		}else {

@@ -144,6 +144,13 @@ public class ValPanelHandle extends PanelHandleBase {
 			List dataSource = rowLeaf.getDataSource();//默认用行区域数据源。				
 			PanelField curValFeild = valFeild;
 			if(curValFeild==null) {
+				PanelField valPanelField = rowCell.getValPanelField();
+				//针对小计单元，可以直接获取valField对象。优化级最高
+				if(valPanelField!=null) {
+					curValFeild = valPanelField;
+				}
+			}
+			if(curValFeild==null) {
 				if(Pivot.PANEL_ROW.equals(this.privotForge.getPanelOfTotalField())) {
 					String alias = getValFieldAlias(rowCells);
 					curValFeild = getValPanelField(alias);						
@@ -180,7 +187,9 @@ public class ValPanelHandle extends PanelHandleBase {
 				}
 				//3.获取当前处理的值字段的别名，再根据别名获取当前处理的值字段。
 				//获取当前处理的值字段
-				curValFeild = getCurValPanelField(curValFeild, colLeaf);					
+				if(curValFeild==null) {
+					curValFeild = getCurValPanelField(curValFeild, colLeaf);	
+				}
 				ValueField valField = (ValueField)curValFeild;
 				
 				Calculation colCalc = colCell.getCalc();
@@ -315,6 +324,10 @@ public class ValPanelHandle extends PanelHandleBase {
 
 	private PanelField getCurValPanelField(PanelField valFeild, LeafData leafData) {
 		DataCell colCell = leafData.getDataCell();//列区域单元对象
+		if(colCell.getValPanelField()!=null) {
+			//针对父结点的合计字段直接取val
+			return colCell.getValPanelField();
+		}
 		List<DataCell> colCells = colCell.getColCells();
 		//获取当前处理的值字段
 		if(Pivot.PANEL_COL.equals(this.privotForge.getPanelOfTotalField())) {
@@ -389,7 +402,7 @@ public class ValPanelHandle extends PanelHandleBase {
 		String alias=null;
 		for(DataCell cell:cells) {
 			PanelField panelField = cell.getPanelField();
-			if(TotalField.isTotalField(panelField)) {
+			if(this.isValueField(panelField)) {
 				alias = cell.getValue();
 				break;
 			}
@@ -439,7 +452,7 @@ public class ValPanelHandle extends PanelHandleBase {
 				}
 			}
 		}else {
-			if(!TotalField.isTotalField(panelField)) {
+			if(this.isAxisField(panelField)) {
 				AxisField axisField = (AxisField)panelField;//行区域字段
 				if(DataType.NORMAL.equals(cell.getDataType()) 
 						&& axisField.isTreeLayout() && axisField.isMutiFuns()) {

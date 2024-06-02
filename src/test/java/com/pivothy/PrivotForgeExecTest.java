@@ -32,8 +32,7 @@ public class PrivotForgeExecTest extends TestTool	{
     @Before
     public void setUp() {    	
     	// 创建模拟的DataSourceMgr
-        List<Map<String, Object>> list = MockDataSource.getList();
-		dataSourceMgr = new DataSourceMgr<>(list);
+        dataSourceMgr = new DataSourceMgr<>(MockDataSource.getList());
         // 初始化PrivotForge
         privotForge = new Pivot<Map<String, Object>>(dataSourceMgr);
     }
@@ -47,7 +46,7 @@ public class PrivotForgeExecTest extends TestTool	{
         Layout layout = Layout.TABLE;
         privotForge.addRowField("city", "城市", layout);
         privotForge.addColField("date", "日期");
-        privotForge.addValField("amount");
+        privotForge.addValField("num");
         privotForge.exec();
         List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();
         printFormat(tableMap);
@@ -467,6 +466,7 @@ public class PrivotForgeExecTest extends TestTool	{
         assertEquals(2, rowDatas.size());//2行
     }
     /**
+     * 原始字段：date,city,prodtype,saler,num,price,amount
      * 行区域0个字段:
      * 列区域2个字段:
      * 值区域1个字段:
@@ -485,6 +485,86 @@ public class PrivotForgeExecTest extends TestTool	{
         List<List<DataCell>> list = (List<List<DataCell>>)result.get("rowDatas");
 		List<List<DataCell>> rowDatas = list;
         assertEquals(2, rowDatas.size());//2行
+    }
+    
+    /**
+     * 原始字段：date,city,prodtype,saler,num,price,amount
+     * 行区域2个字段:
+     * 列区域2个字段:
+     * 值区域1个字段:
+     */
+    @Test
+    public void test2Row2Col1Val() {
+    	privotForge.addRowField("city", "城市");
+    	privotForge.addRowField("prodtype", "商品类型");
+    	privotForge.addColField("date", "日期");
+    	privotForge.addColField("saler", "销售");
+        privotForge.addValField("amount");
+        privotForge.exec();
+        List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();
+        this.printFormat(tableMap);
+        List<List<String>> datas = privotForge.outOfTable();
+        this.printTable(datas);        
+    }
+    
+    /**
+     * 原始字段：date,city,prodtype,saler,num,price,amount
+     * 行区域2个字段:
+     * 列区域2个字段:
+     * 值区域1个字段:
+     */
+    @Test
+    public void test2Row2Col2Val() {
+    	privotForge.addRowField("city", "城市");
+    	privotForge.addRowField("prodtype", "商品类型");
+    	privotForge.addColField("date", "日期");
+    	privotForge.addColField("saler", "销售");
+    	privotForge.addValField("num");
+        privotForge.addValField("amount");
+        privotForge.exec();
+        List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();
+        this.printFormat(tableMap);
+        List<List<String>> datas = privotForge.outOfTable();
+        this.printTable(datas);        
+    }
+    
+    /**
+     * 原始字段：date,city,prodtype,saler,num,price,amount
+     * 行区域2个字段:
+     * 列区域2个字段:
+     * 值区域1个字段:
+     */
+    @Test
+    public void test2Row2Col2ValOfRowPanel() {
+    	privotForge.addRowField("city", "城市").addRowField("prodtype", "商品类型");
+    	privotForge.addColField("date").addColField("saler");
+    	privotForge.addValField("num").addValField("amount");
+    	privotForge.setTotalFieldOfColPanel(false);//设置在行区域展示多值数据
+        privotForge.exec();
+        List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();
+        this.printFormat(tableMap);
+        List<List<String>> datas = privotForge.outOfTable();
+        this.printTable(datas);        
+    }
+    
+    /**
+     * 原始字段：date,city,prodtype,saler,num,price,amount
+     * 行区域2个字段: city为大纲类型，且在同列。
+     * 列区域2个字段:
+     * 值区域1个字段:
+     */
+    @Test
+    public void test2Row2Col2ValOfSameCol() {
+    	privotForge.addRowField("city", "城市").addRowField("prodtype", "商品类型");
+    	privotForge.addColField("date").addColField("saler");
+    	privotForge.addValField("num").addValField("amount");
+    	privotForge.setTotalFieldOfColPanel(false);//设置在行区域展示多值数据
+    	privotForge.setLayoutOfSameCol("city", true);
+        privotForge.exec();
+        List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();
+        this.printFormat(tableMap);
+        List<List<String>> datas = privotForge.outOfTable();
+        this.printTable(datas);        
     }
     
     

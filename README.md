@@ -12,7 +12,7 @@ Java Pivot 是一个轻量级、高效的类似数据透视表的Java工具库�
 <dependency>
     <groupId>com.pivothy</groupId>
     <artifactId>pivothy</artifactId>
-    <version>1.2.0</version>
+    <version>1.1.0</version>
 </dependency>
 
 ```

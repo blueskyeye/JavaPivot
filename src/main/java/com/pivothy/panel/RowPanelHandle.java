@@ -222,13 +222,13 @@ public class RowPanelHandle extends AxisPanelHandle {
 	 * @param pCell  同行前单元结点
 	 * @param curRow 当前行
 	 * @param space  缩进空格
+	 * @return 返回子节点的最大行数
 	 */
-	private int buildItemCells(DataItem dataItem,DataCell pCell,List<DataCell> curRow,String space){
-		int spanRow=0;//用于记录前一字段(父结点)的跨行数,不用另外单独获取
+	private void buildItemCells(DataItem dataItem,DataCell pCell,List<DataCell> curRow,String space){
 		if(curRow==null) {
 			curRow = new ArrayList<>();
-			spanRow++;//如果前面行是空行（新增行），则增加跨行数
-		}	
+		}
+		int initRows = this.getRowNumOfCells();//获取当前行数
 		PanelField panelField = dataItem.getPanelField();
 		//如果是最后一个节点
 		//构建当前数据结点的单元对象
@@ -280,11 +280,11 @@ public class RowPanelHandle extends AxisPanelHandle {
 					//2.2 处理子结点的前缀单元对象（因每个子结点的前缀对象的Y轴不一样，所放在循环内处理。
 					List<DataCell> nextRow = getNextRow(curCell);
 					//2.3 处理子节点.
-					spanRow += buildItemCells(sonItem,curCell,nextRow,space);//数值节点下个字段需要换行.
+					buildItemCells(sonItem,curCell,nextRow,space);//数值节点下个字段需要换行.
 				}
 				//3.处理当前节点的跨行
 				if(!this.isRepeatShow(panelField)) {
-					curCell.setSpanrow(spanRow);
+					setSpanRow(initRows, curCell);
 				}
 				
 			}else if(this.isTreeSameCol(panelField)) {
@@ -299,7 +299,7 @@ public class RowPanelHandle extends AxisPanelHandle {
 					//2.2 处理子结点的前缀单元对象（因每个子结点的前缀对象的Y轴不一样，所放在循环内处理。
 					List<DataCell> nextRow = getNextRow(curCell);
 					//2.3 处理子节点.
-					spanRow += buildItemCells(sonItem,curCell,nextRow,space);//数值节点下个字段需要换行.
+					buildItemCells(sonItem,curCell,nextRow,space);//数值节点下个字段需要换行.
 				}
 				//3.处理当前节点的跨行,因同列跨行始终为1，所不需要处理跨行。
 			}else {
@@ -319,12 +319,12 @@ public class RowPanelHandle extends AxisPanelHandle {
 						nextRow =getNextRow(curCell);
 					}	
 					//2.3 处理子节点.
-					spanRow += buildItemCells(sonItem,curCell,nextRow,space);//数值节点下个字段需要换行.
+					buildItemCells(sonItem,curCell,nextRow,space);//数值节点下个字段需要换行.					
 					index++;
-				}
+				}				
 				//3.处理当前节点的跨行(不存在重复时，需要设置跨行属性)
 				if(!this.isRepeatShow(panelField)) {
-					curCell.setSpanrow(spanRow);
+					setSpanRow(initRows, curCell);
 				}
 			}
 			//处理字段的分组汇总
@@ -343,8 +343,15 @@ public class RowPanelHandle extends AxisPanelHandle {
 				handleSubtotal(dataItem, pCell, curCell);				
 			}			
 		}
-		return spanRow;
 		
+	}
+
+	private void setSpanRow(int initRows, DataCell curCell) {
+		int curRows = this.getRowNumOfCells();//当前行数
+		int spanRow = curRows-initRows;
+		if(spanRow>1){
+			curCell.setSpanrow(spanRow);
+		}
 	}
 
 	public void handleSubtotal(DataItem dataItem, DataCell pCell, DataCell curCell) {
@@ -506,6 +513,9 @@ public class RowPanelHandle extends AxisPanelHandle {
 		//panelField存在别名列表，所有字段必须存在别名且别名设置各不相同，在值区域字段名称可以相同。所这里用别名判断即可
 		String curFieldAlias = itemField.getFieldAlias();
 		for(PanelField field:this.panelFields) {
+			if(this.isValueField(itemField) && this.isValueField(field)) {
+				break;
+			}
 			if(field.getFieldAlias().equals(curFieldAlias)) {
 				//遇到相同就退出。
 				break;
