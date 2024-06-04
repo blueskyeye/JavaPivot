@@ -9,7 +9,6 @@ Java Pivot 是一个轻量级、高效的类似数据透视表的Java工具库�
 * **数据汇总**：数据透视表可以自动对数据进行求和、平均、计数、最大值、最小值等汇总操作。
 * **多维度分析**：用户可以按照不同的维度（如时间、地点、产品等）来组织数据，从而从多个角度分析数据。
 
-
 # 📦安装
 
 ## 🍊Maven
@@ -35,7 +34,7 @@ implementation 'com.pivothy:pivothy:1.2.0'
 
 点击以下链接，下载`pivothy-X.X.X.jar`即可：
 
-* [Maven中央库](https://repo1.maven.org/maven2/com/pivothy/pivothy/1.1.0/)
+* [Maven中央库](https://repo1.maven.org/maven2/com/pivothy/pivothy/1.2.0/)
 
 # 📝文档
 
