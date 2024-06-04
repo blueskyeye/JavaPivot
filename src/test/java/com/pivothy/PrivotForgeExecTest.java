@@ -524,6 +524,7 @@ public class PrivotForgeExecTest extends TestTool	{
         privotForge.exec();
         List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();
         this.printFormat(tableMap);
+        this.mapHtml(tableMap);
         List<List<String>> datas = privotForge.outOfTable();
         this.printTable(datas);        
     }

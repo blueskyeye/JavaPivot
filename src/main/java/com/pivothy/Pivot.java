@@ -270,12 +270,13 @@ public class Pivot<T> {
 							dataRow.add("");//用同样的内容覆盖。
 						}
 					}
-					dataRow.add(cell.getDisplay());
+					dataRow.add(cell.getDisplay());										
+					colIndex++;
 					//处理同行跨列的情况
 					for(int i=1;i<spancol;i++) {
 						dataRow.add("");//用同样的内容覆盖。
-					}					
-					colIndex++;
+						colIndex++;
+					}
 				}
 				if(colIndex<maxCol) {
 					//非首行标题行需要计算最后的小计和总计

@@ -2,6 +2,7 @@ package com.pivothy.source;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -20,25 +21,30 @@ public class MockDataSource {
 	public static List<TreeDict> getTreeDict() {
 		List<TreeDict> roots = new ArrayList<TreeDict>();
 		TreeDict<String, String> root = new TreeDict<String, String>("广州","广州");
-		root.addChild("表姐", "表姐");
-		root.addChild("表哥", "表哥");
-		root.addChild("堂姐", "堂姐");
+		root.addChild("纯棉口罩", "纯棉口罩");
+		root.addChild("医用口罩", "医用口罩");
 		roots.add(root);
 		root = new TreeDict<String, String>("上海","上海");
-		root.addChild("表姐", "表姐");
-		root.addChild("堂兄", "堂兄");
-		root.addChild("朋友", "朋友");
+		root.addChild("N95口罩", "N95口罩");
+		root.addChild("医用口罩", "医用口罩");
 		roots.add(root);
 		root = new TreeDict<String, String>("北京","北京");
-		root.addChild("堂兄", "堂兄");
-		root.addChild("朋友", "朋友");
-		root.addChild("表姐", "表姐");
+		root.addChild("防护服", "防护服");
+		root.addChild("N95口罩", "N95口罩");
 		roots.add(root);
 		root = new TreeDict<String, String>("深圳","深圳");
-		root.addChild("堂兄", "堂兄");
-		root.addChild("表姐", "表姐");
+		root.addChild("消毒液", "消毒液");
+		root.addChild("防护服", "防护服");
 		roots.add(root);		
 		return roots;
+	}
+	
+	public static LinkedHashMap<String,Object> getListDict() {
+		LinkedHashMap<String,Object> list = new LinkedHashMap<>();
+		list.put("北京", "北京");//这里只是演示使用，实际情况根据key,value方式进行转换。
+		list.put("广州", "广州");
+		list.put("深圳", "深圳");		
+		return list;
 	}
 	
 	
