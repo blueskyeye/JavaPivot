@@ -11,7 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.pivothy.data.TreeDict;
+import com.pivothy.field.Calculation;
 import com.pivothy.field.Layout;
+import com.pivothy.field.Subtotal;
 import com.pivothy.source.DataSourceMgr;
 import com.pivothy.source.MockDataSource;
 
@@ -50,6 +52,8 @@ public class PivotTest extends TestTool {
         this.tableHtml(datas);        
     }
     
+    
+    
     /**
      * 原始字段：date,city,prodtype,saler,num,price,amount
      * 行区域字段: city,prodtype
@@ -62,6 +66,50 @@ public class PivotTest extends TestTool {
     	privotForge.addRowField("prodtype", "商品类型");
     	privotForge.addColField("date", "日期");
         privotForge.addValField("amount");
+        privotForge.exec();
+        List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();
+        this.printFormat(tableMap);
+        List<List<String>> datas = privotForge.outOfTable();
+        this.printTable(datas);
+        this.mapHtml(tableMap);
+        this.tableHtml(datas);
+    }
+    
+    /**
+     * 原始字段：date,city,prodtype,saler,num,price,amount
+     * 行区域字段: city,prodtype
+     * 列区域字段: date
+     * 值区域字段: amount
+     */
+    @Test
+    public void test2Row1Col1ValOfFormula() {
+    	privotForge.addRowField("city", "城市");
+    	privotForge.addRowField("prodtype", "商品类型");
+    	privotForge.addColField("date", "日期");
+        privotForge.addValFieldOfFormula("2*num*price","金额",Calculation.SUM);//值区域设置公式
+        privotForge.setFieldSubtotal("city", Subtotal.NOTHING);
+        privotForge.exec();
+        List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();
+        this.printFormat(tableMap);
+        List<List<String>> datas = privotForge.outOfTable();
+        this.printTable(datas);
+        this.mapHtml(tableMap);
+        this.tableHtml(datas);
+    }
+    
+    /**
+     * 原始字段：date,city,prodtype,saler,num,price,amount
+     * 行区域字段: city,prodtype
+     * 列区域字段: date
+     * 值区域字段: amount
+     */
+    @Test
+    public void test2Row1Col1ValOfNothing() {
+    	privotForge.addRowField("city", "城市");
+    	privotForge.addRowField("prodtype", "商品类型");
+    	privotForge.addColField("date", "日期");
+        privotForge.addValField("amount");
+        privotForge.setFieldSubtotal("city", Subtotal.NOTHING);//设置城市字段不需要小计。
         privotForge.exec();
         List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();
         this.printFormat(tableMap);
@@ -103,6 +151,28 @@ public class PivotTest extends TestTool {
     	privotForge.addColField("date", "日期");
     	privotForge.addValField("num","数量");
         privotForge.addValField("amount","金额");
+        privotForge.exec();
+        List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();
+        this.printFormat(tableMap);
+        List<List<String>> datas = privotForge.outOfTable();
+        this.printTable(datas);
+        this.mapHtml(tableMap);
+        this.tableHtml(datas);
+    }
+    
+    /**
+     * 原始字段：date,city,prodtype,saler,num,price,amount
+     * 行区域字段: city
+     * 列区域字段: date
+     * 值区域字段: num,amount
+     */
+    @Test
+    public void test1Row1Col2ValOfRowPanel() {
+    	privotForge.addRowField("city", "城市");
+    	privotForge.addColField("date", "日期");
+    	privotForge.addValField("num","数量");
+        privotForge.addValField("amount","金额");
+        privotForge.setTotalFieldOfColPanel(false);//设置多值字段展示所在区域 true:列区域(默认),false:行区域
         privotForge.exec();
         List<List<Map<String, Object>>> tableMap = privotForge.outOfTableMap();
         this.printFormat(tableMap);

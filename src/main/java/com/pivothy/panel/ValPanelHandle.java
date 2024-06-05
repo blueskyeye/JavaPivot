@@ -292,32 +292,30 @@ public class ValPanelHandle extends PanelHandleBase {
 	private String getValueOfDataCell(FieldMapper fieldMapper, List dataSource, ValueField valField,Calculation calc) {
 		String vValue="";
 		//4.
+		List<String> valList=null;
 		if(valField.isFormula()) {
 			//按公式处理.
 			//4.1先拆分出公式的字段列表。
 			List<String> mulaFields = valField.getValFields(this.privotForge.getSourceFields());
-			//先按单个字段计算出符合条件的和值。
-			Map<String,String> mulaValueMap = new HashMap<String,String>();
-			
-			//4.2获取拆分出的每个字段的数据列表。
-			for(String mulaField:mulaFields) {
-				List<String> valList = fieldMapper.getValuesOfField(dataSource, mulaField);
-				if(valList==null || valList.isEmpty()) {
-					vValue="0";
-				}else {
-					vValue = Calculation.calcSum(valList);//这里只按求和计算。有其他方式需要扩展。
+			valList = new ArrayList<String>();
+			for(Object row : dataSource) {
+				Map<String,String> mulaValueMap = new HashMap<String,String>();
+				//分离所有字段的数据
+				for(String mulaField:mulaFields) {
+					String value = fieldMapper.getValueOfField(row, mulaField);
+					mulaValueMap.put(mulaField, value);
 				}
-				mulaValueMap.put(mulaField, vValue);
-			}
-			//4.3 计算公式的值。
-			vValue = calcFormula(valField.getFormula(),mulaValueMap);
+				String calcValue = calcFormula(valField.getFormula(),mulaValueMap);
+				valList.add(calcValue);
+			}					
 		}else {
-			List<String> valList = fieldMapper.getValuesOfField(dataSource, valField.getFieldName());
-			if(valList==null || valList.isEmpty()) {
-				vValue="0";
-			}else {
-				vValue = Calculation.calcNum(valList, calc==null?valField.getCalculation():calc);	
-			}
+			valList = fieldMapper.getValuesOfField(dataSource, valField.getFieldName());
+			
+		}
+		if(valList==null || valList.isEmpty()) {
+			vValue="0";
+		}else {
+			vValue = Calculation.calcNum(valList, calc==null?valField.getCalculation():calc);	
 		}
 		return vValue;
 	}

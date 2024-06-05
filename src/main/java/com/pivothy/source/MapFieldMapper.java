@@ -253,4 +253,11 @@ public class MapFieldMapper implements FieldMapper {
 		return values;
 	}
 
+	@Override
+	public <T> String getValueOfField(T obj, String fieldName) {
+		Map<String, Object> row = (Map<String, Object>) obj;
+		String value = StrUtil.getStrValue(row, fieldName);// 当前字段的值
+		return value;
+	}
+
 }

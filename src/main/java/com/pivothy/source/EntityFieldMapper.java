@@ -80,4 +80,10 @@ public class EntityFieldMapper implements FieldMapper {
 		return null;
 	}
 
+	@Override
+	public <T> String getValueOfField(T obj, String fieldName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -19,7 +19,7 @@ Java Pivot 是一个轻量级、高效的类似数据透视表的Java工具库�
 <dependency>
     <groupId>com.pivothy</groupId>
     <artifactId>pivothy</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 </dependency>
 
 ```
@@ -27,14 +27,14 @@ Java Pivot 是一个轻量级、高效的类似数据透视表的Java工具库�
 ## 🍐Gradle
 
 ```
-implementation 'com.pivothy:pivothy:1.2.0'
+implementation 'com.pivothy:pivothy:1.2.1'
 ```
 
 ## 📥下载jar
 
 点击以下链接，下载`pivothy-X.X.X.jar`即可：
 
-* [Maven中央库](https://repo1.maven.org/maven2/com/pivothy/pivothy/1.2.0/)
+* [Maven中央库](https://repo1.maven.org/maven2/com/pivothy/pivothy/1.2.1/)
 
 # 📝文档
 

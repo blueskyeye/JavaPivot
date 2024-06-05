@@ -23,4 +23,6 @@ public interface FieldMapper {
 	
 	public List<String> getValuesOfField(List dataSource,String fieldName);
 	
+	public <T> String getValueOfField(T obj,String fieldName);
+	
 }
